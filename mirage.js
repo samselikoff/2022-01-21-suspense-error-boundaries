@@ -13,54 +13,45 @@ export function makeServer({ environment = "test" } = {}) {
       this.namespace = "api";
 
       this.get(
-        "/twitter",
+        "/checking",
         () => {
           // Force an error
           // return new Response(500);
 
           return {
-            stat: "71,897",
-            change: "122",
-            changeType: "increase",
-          };
-        },
-        { timing: 750 }
-      );
-
-      this.get(
-        "/youtube",
-        () => {
-          return {
-            stat: "33,581",
-            change: "412",
-            changeType: "decrease",
-          };
-        },
-        { timing: 1750 }
-      );
-
-      this.get(
-        "/chipotle",
-        () => {
-          return {
-            stat: "2,152",
-            change: "54",
-            changeType: "increase",
-          };
-        },
-        { timing: 1250 }
-      );
-
-      this.get(
-        "/instagram",
-        () => {
-          return {
-            stat: "14,581",
-            change: "24",
+            stat: "$8,027",
+            change: "$678",
             changeType: "increase",
           };
         },
         { timing: 500 }
+      );
+
+      this.get(
+        "/savings",
+        () => {
+          // Force an error
+          // return new Response(500);
+
+          return {
+            stat: "$24,581",
+            change: "$1,167",
+            changeType: "decrease",
+          };
+        },
+        { timing: 1500 }
+      );
+
+      this.get(
+        "/credit",
+        () => {
+          return {
+            stat: "$4,181",
+            change: "$412",
+            changeType: "increase",
+          };
+        },
+        { timing: 750 }
       );
 
       this.namespace = "";

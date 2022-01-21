@@ -34,11 +34,6 @@ export default function App(props) {
                   throw new Error("Fetch failed");
                 }
               }),
-            revalidateOnFocus: false,
-            revalidateOnReconnect: false,
-            revalidateIfStale: false,
-            revalidateOnMount: false,
-            shouldRetryOnError: false,
           }}
         >
           <AppInner {...props} />
@@ -51,7 +46,7 @@ export default function App(props) {
 function AppInner({ Component, pageProps }) {
   return (
     <div className="flex justify-center w-full min-h-screen pt-8 antialiased xs:px-20 sm:px-10 md:pt-28 bg-slate-100">
-      <div className="w-full max-w-sm px-8 sm:max-w-xl">
+      <div className="w-full max-w-sm px-8">
         <Component {...pageProps} />
       </div>
     </div>

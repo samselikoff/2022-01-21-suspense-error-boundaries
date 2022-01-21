@@ -1,16 +1,20 @@
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
 import useSWR from "swr";
+import Error from "./error";
+import Spinner from "./spinner";
 
 export default function Stat({ Icon, label, endpoint }) {
-  let { data } = useSWR(endpoint, { suspense: true });
+  let { data, error } = useSWR(endpoint);
 
-  return (
+  return data ? (
     <div className="flex items-center w-full">
-      <Icon className="w-10 h-10 shrink-0" />
+      <div className="shrink-0">
+        <Icon className="w-10 h-10 text-slate-300" />
+      </div>
       <div className="pl-5">
-        <p className="text-sm font-medium text-gray-500 truncate">{label}</p>
+        <p className="text-sm font-medium truncate text-slate-500">{label}</p>
         <div className="flex items-baseline">
-          <p className="text-2xl font-semibold text-gray-900">{data.stat}</p>
+          <p className="text-2xl font-semibold text-slate-900">{data.stat}</p>
           <p
             className={`ml-2 flex items-baseline text-sm font-semibold ${
               data.changeType === "increase" ? "text-green-600" : "text-red-600"
@@ -26,5 +30,9 @@ export default function Stat({ Icon, label, endpoint }) {
         </div>
       </div>
     </div>
+  ) : error ? (
+    <Error>Could not fetch data.</Error>
+  ) : (
+    <Spinner />
   );
 }

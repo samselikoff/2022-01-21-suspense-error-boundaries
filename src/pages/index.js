@@ -13,31 +13,35 @@ export default function Home() {
         Your accounts
       </h3>
 
-      <div className="grid grid-cols-1 gap-5">
-        <Card>
-          <Stat
-            label="Checking"
-            endpoint="/api/checking"
-            Icon={Icons.CashIcon}
-          />
-        </Card>
+      <ErrorBoundary fallback={<Error>Could not fetch data.</Error>}>
+        <Suspense fallback={<Spinner />}>
+          <div className="grid grid-cols-1 gap-5">
+            <Card>
+              <Stat
+                label="Checking"
+                endpoint="/api/checking"
+                Icon={Icons.CashIcon}
+              />
+            </Card>
 
-        <Card>
-          <Stat
-            label="Savings"
-            endpoint="/api/savings"
-            Icon={Icons.CurrencyDollarIcon}
-          />
-        </Card>
+            <Card>
+              <Stat
+                label="Savings"
+                endpoint="/api/savings"
+                Icon={Icons.CurrencyDollarIcon}
+              />
+            </Card>
 
-        <Card>
-          <Stat
-            label="Credit Card"
-            endpoint="/api/credit"
-            Icon={Icons.CreditCardIcon}
-          />
-        </Card>
-      </div>
+            <Card>
+              <Stat
+                label="Credit Card"
+                endpoint="/api/credit"
+                Icon={Icons.CreditCardIcon}
+              />
+            </Card>
+          </div>
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }
